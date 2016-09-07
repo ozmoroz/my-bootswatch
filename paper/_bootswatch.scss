@@ -1,8 +1,9 @@
-// Paper 3.3.5
+// Paper 3.3.7
 // Bootswatch
 // -----------------------------------------------------
 
-@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
+$web-font-path: "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" !default;
+@import url($web-font-path);
 
 // Navbar =====================================================================
 
@@ -15,13 +16,13 @@
   }
 
   &-inverse {
-    .form-control {
-      color: #fff;
-      @include placeholder($navbar-inverse-link-color);
+    .navbar-form {
 
-      &[type=text],
-      &[type=password] {
+      input[type=text],
+      input[type=password] {
+        color: #fff;
         @include box-shadow(inset 0 -1px 0 $navbar-inverse-link-color);
+        @include placeholder($navbar-inverse-link-color);
 
         &:focus {
           @include box-shadow(inset 0 -2px 0 #fff);
@@ -35,7 +36,7 @@
 
 @mixin btn($class,$bg){
   .btn-#{$class} {
-    background-size: 200%;
+    background-size: 200% 200%;
     background-position: 50%;
 
     &:focus {
@@ -50,7 +51,7 @@
     &:active {
       background-color: darken($bg, 12%);
       @include gradient-radial(darken($bg, 12%) 10%, $bg 11%);
-      background-size: 1000%;
+      background-size: 1000% 1000%;
       @include box-shadow(2px 2px 4px rgba(0,0,0,.4));
     }
   }
@@ -316,6 +317,10 @@ input[type="checkbox"],
     outline: none;
   }
 
+  &:focus:after {
+    border-color: $brand-primary;
+  }
+
   &:after {
     content: "";
     display: block;
@@ -405,6 +410,13 @@ input[type="checkbox"],
   }
 }
 
+.form-group-lg {
+  select,
+  select.form-control {
+    line-height: 1.5;
+  }
+}
+
 // Navs =======================================================================
 
 .nav-tabs {
@@ -485,7 +497,7 @@ input[type="checkbox"],
     background-color: $brand-danger;
   }
 
-  a:not(.close),
+  a:not(.close):not(.btn),
   .alert-link {
     color: #fff;
     font-weight: bold;
@@ -497,7 +509,7 @@ input[type="checkbox"],
 }
 
 .badge {
-  padding: 3px 6px 5px;
+  padding: 4px 6px 4px;
 }
 
 .progress {
